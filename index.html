@@ -2,54 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Disk Method Visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disk Method Visualizer</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="disk-method.js" defer></script>
-  <style>
-    body { font-family: sans-serif; margin: 20px; }
-    input[type="range"] { width: 150px; }
-  </style>
+  <script defer src="disk-method.js"></script>
 </head>
-<body>
+<body style="font-family: sans-serif; text-align: center; max-width: 800px; margin: auto;">
 
-<h2 style="text-align:center;">Disk Method Visualization</h2>
+  <h2>Disk Method Solid of Revolution</h2>
 
-<div style="text-align:center; margin-bottom:15px;">
-  <label>f(x): </label>
-  <input type="text" id="fx" value="Math.sqrt(x)" style="width: 180px;">
-  <label style="margin-left:10px;">a: </label>
-  <input type="number" id="a" value="0" style="width: 60px;">
-  <label style="margin-left:10px;">b: </label>
-  <input type="number" id="b" value="4" style="width: 60px;">
-  <button onclick="updatePlot()" style="margin-left:10px;">Update</button>
-</div>
+  <div>
+    <label>f(x) = </label>
+    <input type="text" id="fx" value="Math.sqrt(x)" />
+    <label> from x = </label>
+    <input type="number" id="a" value="0" step="0.1" />
+    <label> to </label>
+    <input type="number" id="b" value="4" step="0.1" />
+    <button onclick="updatePlot()">Update</button>
+  </div>
 
-<div style="text-align:center; margin-bottom:20px;">
-  <label>Number of Disks: </label>
-  <input type="range" id="diskSlider" min="5" max="100" value="30" oninput="updateDiskLabel(this.value)">
-  <span id="diskCount">30</span>
+  <div style="margin-top: 10px;">
+    <label># of Disks: </label>
+    <input type="range" id="diskSlider" min="5" max="100" value="30" oninput="updateDiskLabel()" />
+    <span id="diskCount">30</span>
+  </div>
 
-  <label style="margin-left:20px;">Rotation Speed: </label>
-  <input type="range" id="speedSlider" min="5" max="100" value="30" oninput="updateSpeedLabel(this.value)">
-  <span id="speedVal">30</span>
-</div>
+  <div style="margin-top: 10px;">
+    <label>Rotation Speed: </label>
+    <input type="range" id="speedSlider" min="5" max="100" value="30" oninput="updateSpeedLabel()" />
+    <span id="speedValue">30</span>
+  </div>
 
-<div style="text-align:center; margin-bottom:20px;">
-  <button id="toggleRotationBtn" onclick="toggleRotation()">Pause Rotation</button>
-</div>
+  <div style="margin-top: 10px;">
+    <button onclick="toggleRotation()">Pause / Play Rotation</button>
+  </div>
 
-<div id="plot" style="width: 100%; height: 700px;"></div>
+  <div style="margin-top: 15px;">
+    <strong>Estimated Volume:</strong> <span id="volumeOutput">--</span> units³
+  </div>
 
-<script>
-function updateDiskLabel(val) {
-  document.getElementById("diskCount").innerText = val;
-}
-
-function updateSpeedLabel(val) {
-  document.getElementById("speedVal").innerText = val;
-}
-</script>
+  <div id="plot" style="width: 100%; height: 700px;"></div>
 
 </body>
 </html>
-
