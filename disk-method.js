@@ -34,7 +34,7 @@ function generateDisks(fxString, a, b, xSteps) {
       y: yArray,
       z: zArray,
       mode: "lines",
-      line: { color: "blue" },
+      line: { color: "green" },
       type: "scatter3d",
       hoverinfo: "none",
       showlegend: false,
